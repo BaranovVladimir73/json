@@ -1,4 +1,4 @@
-package json.model;
+package json.model.enums;
 
 public enum PostStatus {
 

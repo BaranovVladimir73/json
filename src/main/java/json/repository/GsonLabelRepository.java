@@ -1,9 +1,11 @@
 package json.repository;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import json.model.Label;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,9 +28,13 @@ public class GsonLabelRepository implements LabelRepository {
     public List<Label> getAll() {
         List<Label> labels = new ArrayList<>();
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
+            String jsonString = "";
             while (reader.ready()){
-                labels.add(new Gson().fromJson(reader.readLine(), Label.class));
+                jsonString = jsonString + reader.readLine();
             }
+            Type typeToken = new TypeToken<List<Label>>(){}.getType();
+            labels = new Gson().fromJson(jsonString, typeToken);
+
         } catch (IOException e) {
             System.out.println("Файл labels.json не найден");
         }
@@ -36,10 +42,15 @@ public class GsonLabelRepository implements LabelRepository {
     }
 
     public Label save(Label label) {
-        try(BufferedWriter writer = new BufferedWriter(new FileWriter(file, true))){
-            List<Label> currentLabels = getAll();
-            currentLabels.add(label);
-            String jsonString = new Gson().toJson(currentLabels);
+        List<Label> currentLabels = getAll();
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(file))){
+
+            List<Label> newLabels = new ArrayList<>();
+            if (currentLabels != null){
+                newLabels.addAll(newLabels);
+            }
+            newLabels.add(label);
+            String jsonString = new Gson().toJson(newLabels);
             writer.write(jsonString);
         } catch (IOException e) {
             System.out.println("Файл labels.json не найден");

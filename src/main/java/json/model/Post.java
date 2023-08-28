@@ -1,8 +1,16 @@
 package json.model;
 
+import json.model.enums.PostStatus;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.ToString;
+
 import java.util.Date;
 import java.util.List;
 
+@AllArgsConstructor
+@Builder
+@ToString
 public class Post {
 
     private int id;
@@ -13,10 +21,5 @@ public class Post {
 
     private PostStatus status;
 
-    public Post(int id, String content, List<Label> labels, PostStatus status) {
-        this.id = id;
-        this.content = content;
-        this.labels = labels;
-        this.status = status;
-    }
+
 }

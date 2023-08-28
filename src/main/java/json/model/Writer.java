@@ -1,7 +1,15 @@
 package json.model;
 
+import json.model.enums.Status;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.ToString;
+
 import java.util.List;
 
+@AllArgsConstructor
+@Builder
+@ToString
 public class Writer {
 
     private int id;
@@ -9,13 +17,7 @@ public class Writer {
     private String lastName;
     private List<Post> posts;
 
-    private PostStatus status;
+    private Status status;
 
-    public Writer(int id, String firstName, String lastName, List<Post> posts, PostStatus status) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.posts = posts;
-        this.status = status;
-    }
+
 }
