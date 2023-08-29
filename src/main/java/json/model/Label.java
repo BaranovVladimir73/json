@@ -2,13 +2,13 @@ package json.model;
 
 
 import json.model.enums.Status;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.ToString;
+import lombok.*;
 
 @AllArgsConstructor
 @Builder
 @ToString
+@Getter
+@Setter
 public class Label {
 
     private int id;
