@@ -11,6 +11,7 @@ import java.util.List;
 @ToString
 @Setter
 @Getter
+@AllArgsConstructor
 public class Post {
 
     private int id;
@@ -21,12 +22,4 @@ public class Post {
 
     private PostStatus status;
 
-    public Post(int id, String content, List<Label> labels, PostStatus status) {
-        this.id = id;
-        this.content = content;
-        this.labels = labels;
-        this.status = status;
-        this.created = new Date();
-        this.updated = new Date();
-    }
 }
